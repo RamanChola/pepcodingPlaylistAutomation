@@ -165,19 +165,19 @@ function playing1_25(timeInSecs){
 
 function playing1_5(timeInSecs){
     let timeIn1_5 = Math.floor(timeInSecs/1.5); 
-    console.log("Length at 1.5x");
+    
     totalLength(timeIn1_5);
 }
 
 function playing1_75(timeInSecs){
     let timeIn1_75 = Math.floor(timeInSecs/1.75); 
-    console.log("Length at 1.75x");
+    
     totalLength(timeIn1_75);
 }
 
 function playing2(timeInSecs){
     let timeIn2 = Math.floor(timeInSecs/2); 
-    console.log("Length at 2x");
+    
     totalLength(timeIn2);
 }
 
