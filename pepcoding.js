@@ -20,9 +20,9 @@ let page;
         args: ["--start-fullscreen", '--window-size=1920,1040',"--disable-notifications"],
     })
     page = await browser.newPage();
-    // await page.goto("https://www.youtube.com/playlist?list=PL-Jc9J83PIiFj7YSPl2ulcpwy-mwj1SSk");
+    await page.goto("https://www.youtube.com/playlist?list=PL-Jc9J83PIiEW-8x9Js6m5UixBUciYaMV");
     //
-    await page.goto("https://www.youtube.com/playlist?list=PL-Jc9J83PIiEeD3I4VXETPDmzJ3Z1rWb4");
+    // await page.goto(url);
     await page.waitForSelector("h1[id='title']");
     let titleElement = await page.$("h1[id='title']");
     let title = await page.evaluate(txtElem,titleElement);
@@ -56,7 +56,8 @@ let page;
     }, lastVideo);
 
     let timeList = await page.$$("span[id='text']");
-    console.log("Actual Number of videos : "+timeList.length);
+    // console.log("Actual Number of videos : "+timeList.length);
+    console.log("Actual Number of videos : "+videoNameElementList.length);
 
     let videosArr = [];
     let timeInSecs = 0;
@@ -100,19 +101,19 @@ let page;
     console.log("Total length of playlist At 2x :");
     playing2(timeInSecs);
     console.log("------------------------------------");
-    let avgTime = Math.floor(timeInSecs/timeList.length);
+    let avgTime = Math.floor(timeInSecs/videoNameElementList.length);
     console.log("Average length of video : ");
     totalLength(avgTime);
     console.log("------------------------------------");
 
     let folderPath = path.join(__dirname,"PepCoding");
-        isDirrectory(folderPath);
-        let filePath = path.join(folderPath,"Level_1_Playlist"+".pdf");
-        let text =  JSON.stringify(videosArr);
-        let pdfDoc = new pdfkit();
-        pdfDoc.pipe(fs.createWriteStream(filePath));
-        pdfDoc.text(text);
-        pdfDoc.end();
+    isDirrectory(folderPath);
+    let filePath = path.join(folderPath,"Level_1_Playlist"+".pdf");
+    let text =  JSON.stringify(videosArr);
+    let pdfDoc = new pdfkit();
+    pdfDoc.pipe(fs.createWriteStream(filePath));
+    pdfDoc.text(text);
+    pdfDoc.end();
 
 })();
 
