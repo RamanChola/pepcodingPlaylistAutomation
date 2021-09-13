@@ -1,0 +1,25 @@
+{
+  "name": "pepcodingplaylistautomation",
+  "version": "1.0.0",
+  "description": "First version",
+  "main": "pepcoding.js",
+  "scripts": {
+    "start":"nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SOUMYADEEP1805/pepcodingPlaylistAutomation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SOUMYADEEP1805/pepcodingPlaylistAutomation/issues"
+  },
+  "homepage": "https://github.com/SOUMYADEEP1805/pepcodingPlaylistAutomation#readme",
+  "dependencies": {
+    "nodemon": "^2.0.12",
+    "pdfkit": "^0.12.3",
+    "puppeteer": "^10.2.0"
+  }
+}
