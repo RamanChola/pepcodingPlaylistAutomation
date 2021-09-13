@@ -20,7 +20,9 @@ let page;
         args: ["--start-fullscreen", '--window-size=1920,1040',"--disable-notifications"],
     })
     page = await browser.newPage();
-    await page.goto("https://www.youtube.com/playlist?list=PL-Jc9J83PIiFj7YSPl2ulcpwy-mwj1SSk");
+    // await page.goto("https://www.youtube.com/playlist?list=PL-Jc9J83PIiFj7YSPl2ulcpwy-mwj1SSk");
+    //
+    await page.goto("https://www.youtube.com/playlist?list=PL-Jc9J83PIiEeD3I4VXETPDmzJ3Z1rWb4");
     await page.waitForSelector("h1[id='title']");
     let titleElement = await page.$("h1[id='title']");
     let title = await page.evaluate(txtElem,titleElement);
@@ -63,15 +65,24 @@ let page;
         let timeNTitleObj = await page.evaluate(getTimeAndTitle, timeList[i], videoNameElementList[i]);
         videosArr.push(timeNTitleObj);
 
-        let timePartArr = timeNTitleObj.time.split(":");
+        let k = timeNTitleObj.time.includes(":");
+        // console.log(k);
+        if(k == true) {
+            let timePartArr = timeNTitleObj.time.split(":");
         // console.log(timePart[0]+"----"+timePart[1]);
         // console.log(timePartArr.length);
-        if(timePartArr.length == 3){
-          timeInSecs += Number(timePartArr[0])*3600+Number(timePartArr[1])*60+Number(timePartArr[2]);  
+            if(timePartArr.length == 3){
+                timeInSecs += Number(timePartArr[0])*3600+Number(timePartArr[1])*60+Number(timePartArr[2]);  
+              }else{
+                timeInSecs += Number(timePartArr[0])*60+Number(timePartArr[1]);
+                
+              } 
         }else{
-          timeInSecs += Number(timePartArr[0])*60+Number(timePartArr[1]);
+            timeInSecs += 0;
         }
     }
+
+    // console.log(timeInSecs);
     // let time = 203355;
     // console.table(videosArr);
     console.log("Total length of playlist : ");    
@@ -111,7 +122,7 @@ function txtElem(element){
 
 function getTimeAndTitle(element1, element2) {
     return {
-        time: element1.textContent.trim(),
+        time:  element1.textContent.trim(),
         title: element2.textContent.trim()
     }
 }
